@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  api:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - $DATABASE_PORT:3306
+    volumes:
+      - api-mysql-data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=$DATABASE_PWD
+      - MYSQL_DATABASE=$DATABASE_DB
+
+volumes:
+  api-mysql-data:
